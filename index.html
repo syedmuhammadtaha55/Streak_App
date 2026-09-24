@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Streak</title>
+  <meta name="description" content="A calm habit tracker. Check off habits daily and watch your streak grow.">
+  <meta name="theme-color" content="#f7f6f3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#151515" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <h1>Streak</h1>
+      <p class="today" id="today"></p>
+    </header>
+
+    <form class="add" id="add-form" autocomplete="off">
+      <input id="add-input" type="text" maxlength="60" placeholder="Add a habit" aria-label="New habit name">
+      <button type="submit" aria-label="Add habit">Add</button>
+    </form>
+
+    <ul class="habits" id="habits"></ul>
+
+    <p class="empty" id="empty" hidden>Nothing here yet. Add a habit to begin.</p>
+  </main>
+
+  <template id="habit-template">
+    <li class="habit">
+      <button class="check" type="button" aria-pressed="false"></button>
+      <div class="info">
+        <span class="name"></span>
+        <div class="week" aria-hidden="true"></div>
+      </div>
+      <div class="streak">
+        <span class="count"></span>
+        <span class="label"></span>
+      </div>
+      <button class="more" type="button" aria-label="Habit options">⋯</button>
+    </li>
+  </template>
+
+  <dialog id="edit-dialog">
+    <form method="dialog" class="edit">
+      <label for="edit-input">Habit name</label>
+      <input id="edit-input" type="text" maxlength="60">
+      <p class="best" id="edit-best"></p>
+      <div class="edit-actions">
+        <button type="button" class="danger" id="delete-btn">Delete</button>
+        <span class="spacer"></span>
+        <button value="cancel" type="submit" class="ghost">Cancel</button>
+        <button value="save" type="submit" id="save-btn">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
